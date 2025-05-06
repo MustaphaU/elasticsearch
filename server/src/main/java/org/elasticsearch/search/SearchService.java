@@ -720,9 +720,9 @@ public class SearchService extends AbstractLifecycleComponent implements IndexEv
             if (waitForCheckpoint <= UNASSIGNED_SEQ_NO) {
                 runAsync(executor, executable, listener);
                 // we successfully submitted the async task to the search pool so let's prewarm the shard
-                if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
-                    onlinePrewarmingService.prewarm(shard);
-                }
+//                if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
+//                    onlinePrewarmingService.prewarm(shard);
+//                }
                 return;
             }
             if (shard.indexSettings().getRefreshInterval().getMillis() <= 0) {
@@ -800,9 +800,9 @@ public class SearchService extends AbstractLifecycleComponent implements IndexEv
                         }
                         runAsync(executor, executable, listener);
                         // we successfully submitted the async task to the search pool so let's prewarm the shard
-                        if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
-                            onlinePrewarmingService.prewarm(shard);
-                        }
+//                        if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
+//                            onlinePrewarmingService.prewarm(shard);
+//                        }
                     }
                 }
             });
@@ -1014,9 +1014,9 @@ public class SearchService extends AbstractLifecycleComponent implements IndexEv
             }
         }, wrapFailureListener(listener, readerContext, markAsUsed));
         // we successfully submitted the async task to the search pool so let's prewarm the shard
-        if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
-            onlinePrewarmingService.prewarm(readerContext.indexShard());
-        }
+//        if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
+//            onlinePrewarmingService.prewarm(readerContext.indexShard());
+//        }
     }
 
     /**
@@ -1083,9 +1083,9 @@ public class SearchService extends AbstractLifecycleComponent implements IndexEv
                 }
             }, wrapFailureListener(l, readerContext, markAsUsed));
             // we successfully submitted the async task to the search pool so let's prewarm the shard
-            if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
-                onlinePrewarmingService.prewarm(readerContext.indexShard());
-            }
+//            if (isExecutorQueuedBeyondPrewarmingFactor(executor, prewarmingMaxPoolFactorThreshold) == false) {
+//                onlinePrewarmingService.prewarm(readerContext.indexShard());
+//            }
         }));
     }
 
